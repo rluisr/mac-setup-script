@@ -6,6 +6,8 @@ important_casks=(
   jetbrains-toolbox
   istat-menus
   slack
+  alfred
+  keyboard-maestro
 )
 
 brews=(
@@ -89,19 +91,12 @@ JDK_VERSION=amazon-corretto@1.8.222-10.1
 set +e
 set -x
 
-function prompt {
-  if [[ -z "${CI}" ]]; then
-    read -p "Hit Enter to $1 ..."
-  fi
-}
-
 function install {
   cmd=$1
   shift
   for pkg in "$@";
   do
     exec="$cmd $pkg"
-    #prompt "Execute: $exec"
     if ${exec} ; then
       echo "Installed $pkg"
     else
@@ -133,11 +128,9 @@ if [[ -z "${CI}" ]]; then
 fi
 
 if test ! "$(command -v brew)"; then
-  prompt "Install Homebrew"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
   if [[ -z "${CI}" ]]; then
-    prompt "Update Homebrew"
     brew update
     brew upgrade
     brew doctor
@@ -149,17 +142,14 @@ echo "Install important software ..."
 brew tap caskroom/versions
 install 'brew cask install' "${important_casks[@]}"
 
-prompt "Install packages"
 install 'brew_install_or_upgrade' "${brews[@]}"
 brew link --overwrite ruby
 
-prompt "Install JDK=${JDK_VERSION}"
 curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
 jabba install ${JDK_VERSION}
 jabba alias default ${JDK_VERSION}
 java -version
 
-prompt "Set git defaults"
 for config in "${git_configs[@]}"
 do
   git config --global ${config}
@@ -167,13 +157,11 @@ done
 
 if [[ -z "${CI}" ]]; then
   gpg --keyserver hkp://pgp.mit.edu --recv ${gpg_key}
-  prompt "Export key to Github"
   ssh-keygen -t rsa -b 4096 -C ${git_email}
   pbcopy < ~/.ssh/id_rsa.pub
   open https://github.com/settings/ssh/new
-fi  
+fi
 
-prompt "Upgrade bash"
 brew install bash bash-completion2 fzf
 sudo bash -c "echo $(brew --prefix)/bin/bash >> /private/etc/shells"
 #sudo chsh -s "$(brew --prefix)"/bin/bash
@@ -187,15 +175,12 @@ alias ls='exa -l'
 alias cat=bat
 " >> ~/.bash_profile
 
-prompt "Setting up xonsh"
 sudo bash -c "which xonsh >> /private/etc/shells"
 sudo chsh -s $(which xonsh)
 echo "source-bash --overwrite-aliases ~/.bash_profile" >> ~/.xonshrc
 
-prompt "Install software"
 install 'brew cask install' "${casks[@]}"
 
-prompt "Install secondary packages"
 install 'pip3 install --upgrade' "${pips[@]}"
 install 'gem install' "${gems[@]}"
 install 'npm install --global' "${npms[@]}"
@@ -203,24 +188,20 @@ install 'code --install-extension' "${vscode[@]}"
 brew tap caskroom/fonts
 install 'brew cask install' "${fonts[@]}"
 
-prompt "Changle Slack to dark"
 cd ~/Downloads
 git clone https://github.com/LanikSJ/slack-dark-mode
 cd slack-dark-mode
 ./slack-dark-mode.sh 
 
-prompt "Update packages"
 pip3 install --upgrade pip setuptools wheel
 if [[ -z "${CI}" ]]; then
   m update install all
 fi
 
 if [[ -z "${CI}" ]]; then
-  prompt "Install software from App Store"
   mas list
 fi
 
-prompt "Cleanup"
 brew cleanup
 brew cask cleanup
 
