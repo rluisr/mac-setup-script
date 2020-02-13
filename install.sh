@@ -11,6 +11,7 @@ important_casks=(
 )
 
 brews=(
+  peco
   awscli
   "bash-snippets --without-all-tools --with-cryptocurrency --with-stocks --with-weather"
   coreutils
