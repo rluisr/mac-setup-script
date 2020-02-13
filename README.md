@@ -3,3 +3,7 @@ curl -sL https://raw.githubusercontent.com/rluisr/mac-setup-script/master/defaul
 curl -O https://raw.githubusercontent.com/rluisr/mac-setup-script/master/install.sh
 bash install.sh
 ```
+
+yadr
+
+dotfiles
