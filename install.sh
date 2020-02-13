@@ -37,6 +37,8 @@ brews=(
   tmux
   tree
   trash
+  pyenv
+  rbenv
   "vim --with-override-system-vi"
   "wget --with-iri"
 )
