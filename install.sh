@@ -3,118 +3,46 @@
 # Install some stuff before others!
 important_casks=(
   authy
-  dropbox
-  #google-chrome
-  hyper
   jetbrains-toolbox
   istat-menus
-  spotify
-  franz
-  visual-studio-code
   slack
 )
 
 brews=(
-  xonsh
-  jabba
   awscli
   "bash-snippets --without-all-tools --with-cryptocurrency --with-stocks --with-weather"
-  bat
-  #cheat
   coreutils
-  dfc
-  exa
   findutils
-  "fontconfig --universal"
-  fpp
   git
   git-extras
   git-fresh
   git-lfs
-  "gnuplot --with-qt"
   "gnu-sed --with-default-names"
   go
   gpg
-  haskell-stack
-  hh
-  #hosts
+  ghq
+  golangci-lint
+  direnv
   htop
-  httpie
-  iftop
-  "imagemagick --with-webp"
-  lighttpd
-  lnav
-  m-cli
-  mackup
-  macvim
-  mas
-  micro
-  moreutils
-  mtr
-  ncdu
-  neofetch
-  nmap  
+  nmap
   node
-  poppler
-  postgresql
-  pgcli
-  pv
   python
   python3
   osquery
   ruby
-  scala
-  sbt
   shellcheck
-  stormssh
-  teleport
   thefuck
   tmux
   tree
   trash
   "vim --with-override-system-vi"
-  #volumemixer
   "wget --with-iri"
-  xsv
-  youtube-dl
 )
 
 casks=(
-  aerial
-  adobe-acrobat-pro
-  airdroid
-  android-platform-tools
-  cakebrew
-  cleanmymac
   docker
-  expressvpn
   firefox
-  geekbench
   google-backup-and-sync
-  github
-  handbrake
-  iina
-  istat-server  
-  launchrocket
-  kap-beta
-  qlcolorcode
-  qlmarkdown
-  qlstephen
-  quicklook-json
-  quicklook-csv
-  macdown
-  #muzzle
-  plex-media-player
-  plex-media-server
-  private-eye
-  satellite-eyes
-  sidekick
-  skype
-  sloth
-  steam
-  transmission
-  transmission-remote-gui
-  xquartz
 )
 
 pips=(
@@ -153,19 +81,6 @@ git_configs=(
   "user.name pathikrit"
   "user.email ${git_email}"
   "user.signingkey ${gpg_key}"
-)
-
-vscode=(
-  alanz.vscode-hie-server
-  rebornix.Ruby
-  redhat.java
-  rust-lang.rust
-  scalameta.metals
-)
-
-fonts=(
-  font-fira-code
-  font-source-code-pro
 )
 
 JDK_VERSION=amazon-corretto@1.8.222-10.1
