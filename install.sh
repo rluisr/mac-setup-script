@@ -22,6 +22,7 @@ brews=(
   git-fresh
   git-lfs
   "gnu-sed --with-default-names"
+  "gnu-tar --with-default-names"
   go
   gpg
   ghq
