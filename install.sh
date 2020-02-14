@@ -11,7 +11,6 @@ important_casks=(
 )
 
 brews=(
-  ansible
   peco
   awscli
   "bash-snippets --without-all-tools --with-cryptocurrency --with-stocks --with-weather"
@@ -54,9 +53,11 @@ casks=(
 
 pips=(
   pip
+  ansible
   glances
   ohmu
   pythonpy
+  openstacksdk
 )
 
 gems=(
