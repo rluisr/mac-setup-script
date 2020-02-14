@@ -22,6 +22,7 @@ brews=(
   git-lfs
   "gnu-sed --with-default-names"
   "gnu-tar --with-default-names"
+  jq
   go
   gpg
   ghq
@@ -54,6 +55,7 @@ casks=(
 pips=(
   pip
   ansible
+  python-openstackclient
   glances
   ohmu
   pythonpy
