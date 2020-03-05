@@ -215,3 +215,6 @@ brew cask cleanup
 
 echo "Run [mackup restore] after DropBox has done syncing ..."
 echo "Done!"
+
+echo "custom me"
+echo "prompt sorin" > ~/.zsh.after/prompt.zsh
